@@ -15,7 +15,7 @@
         <title>Shimmy Compatibility Wrappers - PettingZoo Documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=721f65a87c37740baa8d605b09db5bec3a2987a8" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=b0c92cd440df7c18a0306b0433406327ff2c572f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=4297ed78bc2370ec4493f1a6639f04addebc5da5" />
     
     
 
@@ -454,6 +454,7 @@
         <span class="n">action</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;action_mask&quot;</span><span class="p">])</span>  <span class="c1"># this is where you would insert your policy</span>
     <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
     <span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+
 </pre></div>
 </div>
 <p>For more information, see <a class="reference external" href="https://shimmy.farama.org/contents/open_spiel/">Shimmy OpenSpiel documentation</a></p>
@@ -474,21 +475,21 @@
 <section id="multi-agent-compatibility-wrappers">
 <h2>Multi-Agent Compatibility Wrappers:<a class="headerlink" href="#multi-agent-compatibility-wrappers" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://shimmy.farama.org/contents/dm_multi/#shimmy.dm_control_multiagent_compatibility.DmControlMultiAgentCompatibilityV0" title="(in Shimmy)"><code class="xref py py-class docutils literal notranslate"><span class="pre">shimmy.dm_control_multiagent_compatibility.DmControlMultiAgentCompatibilityV0</span></code></a></p></li>
-<li><p><a class="reference external" href="https://shimmy.farama.org/contents/open_spiel/#shimmy.openspiel_compatibility.OpenspielCompatibilityV0" title="(in Shimmy)"><code class="xref py py-class docutils literal notranslate"><span class="pre">shimmy.openspiel_compatibility.OpenspielCompatibilityV0</span></code></a></p></li>
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">shimmy.meltingpot_compatibility.MeltingPotCompatibilityV0</span></code></p></li>
+<li><p><a class="reference external" href="https://shimmy.farama.org/environments/dm_multi/#shimmy.dm_control_multiagent_compatibility.DmControlMultiAgentCompatibilityV0" title="(in Shimmy)"><code class="xref py py-class docutils literal notranslate"><span class="pre">shimmy.dm_control_multiagent_compatibility.DmControlMultiAgentCompatibilityV0</span></code></a></p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">shimmy.openspiel_compatibility.OpenspielCompatibilityV0</span></code></p></li>
+<li><p><a class="reference external" href="https://shimmy.farama.org/environments/meltingpot/#shimmy.meltingpot_compatibility.MeltingPotCompatibilityV0" title="(in Shimmy)"><code class="xref py py-class docutils literal notranslate"><span class="pre">shimmy.meltingpot_compatibility.MeltingPotCompatibilityV0</span></code></a></p></li>
 </ul>
 </section>
 <section id="citation">
 <h2>Citation<a class="headerlink" href="#citation" title="Permalink to this heading">#</a></h2>
 <p>If you use this in your research, please cite:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@software</span><span class="p">{</span><span class="n">shimmy2022github</span><span class="p">,</span>
-  <span class="n">author</span> <span class="o">=</span> <span class="p">{</span><span class="n">Jordan</span> <span class="n">Terry</span><span class="p">,</span> <span class="n">Mark</span> <span class="n">Towers</span><span class="p">,</span> <span class="n">Jun</span> <span class="n">Jet</span> <span class="n">Tai</span><span class="p">},</span>
-  <span class="n">title</span> <span class="o">=</span> <span class="p">{</span><span class="n">Shimmy</span><span class="p">:</span> <span class="n">Gymnasium</span> <span class="ow">and</span> <span class="n">Pettingzoo</span> <span class="n">Wrappers</span> <span class="k">for</span> <span class="n">Commonly</span> <span class="n">Used</span> <span class="n">Environments</span><span class="p">},</span>
-  <span class="n">url</span> <span class="o">=</span> <span class="p">{</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Farama</span><span class="o">-</span><span class="n">Foundation</span><span class="o">/</span><span class="n">Shimmy</span><span class="p">},</span>
-  <span class="n">version</span> <span class="o">=</span> <span class="p">{</span><span class="mf">0.2.0</span><span class="p">},</span>
-  <span class="n">year</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2022</span><span class="p">},</span>
-<span class="p">}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>@software{shimmy2022github,
+  author = {{Jun Jet Tai, Mark Towers} and Elliot Tower and Jordan Terry},
+  title = {Shimmy: Gymnasium and Pettingzoo Wrappers for Commonly Used Environments},
+  url = {http://github.com/Farama-Foundation/Shimmy},
+  version = {0.2.0},
+  year = {2022},
+}```
 </pre></div>
 </div>
 </section>

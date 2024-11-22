@@ -10,7 +10,7 @@
     <meta property="og:url" content="https://pettingzoo.farama.org/_modules/pettingzoo/classic/go/go.html" /><meta name="twitter:card" content="summary_large_image"><link rel="index" title="Index" href="../../../../../genindex/" /><link rel="search" title="Search" href="../../../../../search/" />
         <link rel="canonical" href="https://pettingzoo.farama.org/_modules/pettingzoo/classic/go/go.html" />
 
-    <link rel="shortcut icon" href="../../../../../_static/favicon.png"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.08.19.dev1 -->
+    <link rel="shortcut icon" href="../../../../../_static/favicon.png"/><!-- Generated with Sphinx 7.4.7 and Furo 2023.08.19.dev1 -->
         <title>pettingzoo.classic.go.go - PettingZoo Documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/furo.css?v=3e7f4c72" />
@@ -473,14 +473,14 @@
 
 <span class="sd">|                          Action ID                           | Description                                                  |</span>
 <span class="sd">| :----------------------------------------------------------: | ------------------------------------------------------------ |</span>
-<span class="sd">| &lt;img src=&quot;https://render.githubusercontent.com/render/math?math=0 \ldots (N-1)&quot;&gt; | Place a stone on the 1st row of the board.&lt;br&gt;_`0`: (0,0), `1`: (0,1), ..., `N-1`: (0,N-1)_ |</span>
-<span class="sd">| &lt;img src=&quot;https://render.githubusercontent.com/render/math?math=N \ldots (2N- 1)&quot;&gt; | Place a stone on the 2nd row of the board.&lt;br&gt;_`N`: (1,0), `N+1`: (1,1), ..., `2N-1`: (1,N-1)_ |</span>
+<span class="sd">| $0 \ldots (N-1)$ | Place a stone on the 1st row of the board.&lt;br&gt;_`0`: (0,0), `1`: (0,1), ..., `N-1`: (0,N-1)_ |</span>
+<span class="sd">| $N \ldots (2N- 1)$ | Place a stone on the 2nd row of the board.&lt;br&gt;_`N`: (1,0), `N+1`: (1,1), ..., `2N-1`: (1,N-1)_ |</span>
 <span class="sd">|                             ...                              | ...                                                          |</span>
-<span class="sd">| &lt;img src=&quot;https://render.githubusercontent.com/render/math?math=N^2-N \ldots N^2-1&quot;&gt; | Place a stone on the Nth row of the board.&lt;br&gt;_`N^2-N`: (N-1,0), `N^2-N+1`: (N-1,1), ..., `N^2-1`: (N-1,N-1)_ |</span>
-<span class="sd">| &lt;img src=&quot;https://render.githubusercontent.com/render/math?math=N^2&quot;&gt; | Pass                                                         |</span>
+<span class="sd">| $(N^2-N) \ldots (N^2-1)$ | Place a stone on the Nth row of the board.&lt;br&gt;_`N^2-N`: (N-1,0), `N^2-N+1`: (N-1,1), ..., `N^2-1`: (N-1,N-1)_ |</span>
+<span class="sd">| $N^2$ | Pass                                                         |</span>
 
-<span class="sd">For example, you would use action `4` to place a stone on the board at the (0,3) location or action `N^2` to pass. You can transform a non-pass action `a` back into its 2D (x,y) coordinate by computing `(a//N, a%N)` The total action space is</span>
-<span class="sd">&lt;img src=&quot;https://render.githubusercontent.com/render/math?math=N^2 %2B 1&quot;&gt;.</span>
+<span class="sd">For example, you would use action `4` to place a stone on the board at the (0,3) location or action `N^2` to pass. You can transform a non-pass action `a` back into its 2D (x,y) coordinate by computing `(a//N, a%N)`. The total action space is</span>
+<span class="sd">$N^2+1$.</span>
 
 <span class="sd">### Rewards</span>
 
@@ -511,7 +511,7 @@
 <span class="kn">from</span> <span class="nn">pettingzoo</span> <span class="kn">import</span> <span class="n">AECEnv</span>
 <span class="kn">from</span> <span class="nn">pettingzoo.classic.go</span> <span class="kn">import</span> <span class="n">coords</span><span class="p">,</span> <span class="n">go_base</span>
 <span class="kn">from</span> <span class="nn">pettingzoo.utils</span> <span class="kn">import</span> <span class="n">wrappers</span>
-<span class="kn">from</span> <span class="nn">pettingzoo.utils.agent_selector</span> <span class="kn">import</span> <span class="n">agent_selector</span>
+<span class="kn">from</span> <span class="nn">pettingzoo.utils.agent_selector</span> <span class="kn">import</span> <span class="n">AgentSelector</span>
 
 
 <span class="k">def</span> <span class="nf">get_image</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
@@ -588,7 +588,7 @@
             <span class="p">[</span><span class="n">spaces</span><span class="o">.</span><span class="n">Discrete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_N</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_agents</span><span class="p">)]</span>
         <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_agent_selector</span> <span class="o">=</span> <span class="n">agent_selector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_agent_selector</span> <span class="o">=</span> <span class="n">AgentSelector</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">board_history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_N</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_N</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
 
@@ -973,8 +973,8 @@
         })()
       </script>
 
-    <script src="../../../../../_static/documentation_options.js?v=4b4b37dc"></script>
-    <script src="../../../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../../../_static/documentation_options.js?v=d48881cd"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../../_static/scripts/furo.js?v=7660844c"></script>
     

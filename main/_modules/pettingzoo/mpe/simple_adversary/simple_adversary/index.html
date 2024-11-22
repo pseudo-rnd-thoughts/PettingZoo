@@ -10,7 +10,7 @@
     <meta property="og:url" content="https://pettingzoo.farama.org/_modules/pettingzoo/mpe/simple_adversary/simple_adversary.html" /><meta name="twitter:card" content="summary_large_image"><link rel="index" title="Index" href="../../../../../genindex/" /><link rel="search" title="Search" href="../../../../../search/" />
         <link rel="canonical" href="https://pettingzoo.farama.org/_modules/pettingzoo/mpe/simple_adversary/simple_adversary.html" />
 
-    <link rel="shortcut icon" href="../../../../../_static/favicon.png"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.08.19.dev1 -->
+    <link rel="shortcut icon" href="../../../../../_static/favicon.png"/><!-- Generated with Sphinx 7.4.7 and Furo 2023.08.19.dev1 -->
         <title>pettingzoo.mpe.simple_adversary.simple_adversary - PettingZoo Documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/furo.css?v=3e7f4c72" />
@@ -420,7 +420,7 @@
 <span class="sd">target landmark, but negatively rewarded based on how close the adversary is to the target landmark. The adversary is rewarded based on distance to the target, but it doesn&#39;t know which landmark is the target landmark. All rewards are unscaled Euclidean distance (see main MPE documentation for</span>
 <span class="sd">average distance). This means good agents have to learn to &#39;split up&#39; and cover all landmarks to deceive the adversary.</span>
 
-<span class="sd">Agent observation space: `[self_pos, self_vel, goal_rel_position, landmark_rel_position, other_agent_rel_positions]`</span>
+<span class="sd">Agent observation space: `[goal_rel_position, landmark_rel_position, other_agent_rel_positions]`</span>
 
 <span class="sd">Adversary observation space: `[landmark_rel_position, other_agents_rel_positions]`</span>
 
@@ -431,7 +431,7 @@
 <span class="sd">### Arguments</span>
 
 <span class="sd">``` python</span>
-<span class="sd">simple_adversary_v3.env(N=2, max_cycles=25, continuous_actions=False)</span>
+<span class="sd">simple_adversary_v3.env(N=2, max_cycles=25, continuous_actions=False, dynamic_rescaling=False)</span>
 <span class="sd">```</span>
 
 
@@ -441,6 +441,8 @@
 <span class="sd">`max_cycles`:  number of frames (a step for each agent) until game terminates</span>
 
 <span class="sd">`continuous_actions`: Whether agent action spaces are discrete(default) or continuous</span>
+
+<span class="sd">`dynamic_rescaling`: Whether to rescale the size of agents and landmarks based on the screen size</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -456,7 +458,14 @@
 <div class="viewcode-block" id="raw_env">
 <a class="viewcode-back" href="../../../../../environments/mpe/simple_adversary/#pettingzoo.mpe.simple_adversary.simple_adversary.raw_env">[docs]</a>
 <span class="k">class</span> <span class="nc">raw_env</span><span class="p">(</span><span class="n">SimpleEnv</span><span class="p">,</span> <span class="n">EzPickle</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_cycles</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">continuous_actions</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">max_cycles</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+        <span class="n">continuous_actions</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">render_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">dynamic_rescaling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="n">EzPickle</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">N</span><span class="o">=</span><span class="n">N</span><span class="p">,</span>
@@ -473,6 +482,7 @@
             <span class="n">render_mode</span><span class="o">=</span><span class="n">render_mode</span><span class="p">,</span>
             <span class="n">max_cycles</span><span class="o">=</span><span class="n">max_cycles</span><span class="p">,</span>
             <span class="n">continuous_actions</span><span class="o">=</span><span class="n">continuous_actions</span><span class="p">,</span>
+            <span class="n">dynamic_rescaling</span><span class="o">=</span><span class="n">dynamic_rescaling</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;simple_adversary_v3&quot;</span></div>
 
@@ -760,8 +770,8 @@
         })()
       </script>
 
-    <script src="../../../../../_static/documentation_options.js?v=4b4b37dc"></script>
-    <script src="../../../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../../../_static/documentation_options.js?v=d48881cd"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../../_static/scripts/furo.js?v=7660844c"></script>
     

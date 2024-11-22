@@ -10,7 +10,7 @@
     <meta property="og:url" content="https://pettingzoo.farama.org/_modules/pettingzoo/mpe/simple_world_comm/simple_world_comm.html" /><meta name="twitter:card" content="summary_large_image"><link rel="index" title="Index" href="../../../../../genindex/" /><link rel="search" title="Search" href="../../../../../search/" />
         <link rel="canonical" href="https://pettingzoo.farama.org/_modules/pettingzoo/mpe/simple_world_comm/simple_world_comm.html" />
 
-    <link rel="shortcut icon" href="../../../../../_static/favicon.png"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.08.19.dev1 -->
+    <link rel="shortcut icon" href="../../../../../_static/favicon.png"/><!-- Generated with Sphinx 7.4.7 and Furo 2023.08.19.dev1 -->
         <title>pettingzoo.mpe.simple_world_comm.simple_world_comm - PettingZoo Documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/furo.css?v=3e7f4c72" />
@@ -422,11 +422,11 @@
 <span class="sd">In particular, the good agents reward, is -5 for every collision with an adversary, -2 x bound by the `bound` function described in simple_tag, +2 for every collision with a food, and -0.05 x minimum distance to any food. The adversarial agents are rewarded +5 for collisions and -0.1 x minimum</span>
 <span class="sd">distance to a good agent. s</span>
 
-<span class="sd">Good agent observations: `[self_vel, self_pos, landmark_rel_positions, other_agent_rel_positions, other_agent_velocities, self_in_forest]`</span>
+<span class="sd">Good agent observations: `[self_vel, self_pos, landmark_rel_positions, other_agent_rel_positions, self_in_forest, other_agent_velocities]`</span>
 
 <span class="sd">Normal adversary observations:`[self_vel, self_pos, landmark_rel_positions, other_agent_rel_positions, other_agent_velocities, self_in_forest, leader_comm]`</span>
 
-<span class="sd">Adversary leader observations: `[self_vel, self_pos, landmark_rel_positions, other_agent_rel_positions, other_agent_velocities, leader_comm]`</span>
+<span class="sd">Adversary leader observations: `[self_vel, self_pos, landmark_rel_positions, other_agent_rel_positions, other_agent_velocities, self_in_forest, leader_comm]`</span>
 
 <span class="sd">*Note that when the forests prevent an agent from being seen, the observation of that agents relative position is set to (0,0).*</span>
 
@@ -444,7 +444,7 @@
 
 <span class="sd">``` python</span>
 <span class="sd">simple_world_comm_v3.env(num_good=2, num_adversaries=4, num_obstacles=1,</span>
-<span class="sd">                num_food=2, max_cycles=25, num_forests=2, continuous_actions=False)</span>
+<span class="sd">                num_food=2, max_cycles=25, num_forests=2, continuous_actions=False, dynamic_rescaling=False)</span>
 <span class="sd">```</span>
 
 
@@ -462,6 +462,8 @@
 <span class="sd">`num_forests`: number of forests that can hide agents inside from being seen</span>
 
 <span class="sd">`continuous_actions`: Whether agent action spaces are discrete(default) or continuous</span>
+
+<span class="sd">`dynamic_rescaling`: Whether to rescale the size of agents and landmarks based on the screen size</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -487,6 +489,7 @@
         <span class="n">num_forests</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
         <span class="n">continuous_actions</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">render_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">dynamic_rescaling</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="n">EzPickle</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -510,6 +513,7 @@
             <span class="n">render_mode</span><span class="o">=</span><span class="n">render_mode</span><span class="p">,</span>
             <span class="n">max_cycles</span><span class="o">=</span><span class="n">max_cycles</span><span class="p">,</span>
             <span class="n">continuous_actions</span><span class="o">=</span><span class="n">continuous_actions</span><span class="p">,</span>
+            <span class="n">dynamic_rescaling</span><span class="o">=</span><span class="n">dynamic_rescaling</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;simple_world_comm_v3&quot;</span></div>
 
@@ -986,8 +990,8 @@
         })()
       </script>
 
-    <script src="../../../../../_static/documentation_options.js?v=4b4b37dc"></script>
-    <script src="../../../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../../../_static/documentation_options.js?v=d48881cd"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../../_static/scripts/furo.js?v=7660844c"></script>
     
